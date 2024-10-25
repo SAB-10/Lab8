@@ -41,15 +41,27 @@ public class CustomListTest {
 
     @Test
     public void deleteCityTest() {
-        list = MockCityList(); // Initializes an empty list
+        list = MockCityList();
         City city = new City("Calgary", "AB");
-        list.addCity(city); // Add city to the list
+        list.addCity(city);
 
-        list.hasCity(city); // Check that the city exists (if using void hasCity)
+        list.hasCity(city); // ok easier
 
-        list.deleteCity(city); // Attempt to delete city
+        list.deleteCity(city);
 
-        list.hasCity(city); // Check that the city no longer exists
+        list.hasCity(city);
+    }
+
+
+    @Test
+    public void countCitiesTest() {
+        list = MockCityList();
+        assertEquals(0, list.countCities());
+        String[] cities = {"Calgary", "Edmonton", "Vancouver"};
+        for (int i = 0; i < cities.length; i++) {
+            list.addCity(new City(cities[i], "AB"));
+            assertEquals(i + 1, list.countCities());
+        }
     }
 
 }
